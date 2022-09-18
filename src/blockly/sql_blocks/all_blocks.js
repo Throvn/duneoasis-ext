@@ -3,7 +3,7 @@ import 'blockly/blocks';
 import 'blockly/javascript';
 import fillTables from '../fillTables';
 import fillColumns from '../fillColumns';
-import doesMatch from '../doesMatch';
+// import doesMatch from '../../../doesMatch.ts';
 
 
 
@@ -1823,7 +1823,6 @@ Blockly.Blocks['table'] = {
 };
 Blockly.JavaScript['table'] = function (block) {
     var chosenTableT = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('chooseTableT'));
-    console.log("Table sqlCode: ", code)
     var code = chosenTableT;
     return code;
 };
