@@ -9,7 +9,6 @@ export default (): string[][] => {
         "ethereum",
         "gnosis",
         "optimism",
-        "solana"
     ];
 
     return tables.map((table, index) => { return [table, `${index}`] });

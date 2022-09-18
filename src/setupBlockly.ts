@@ -6,18 +6,74 @@
 // @ts-ignore
 import Blockly from './blockly/sql_blocks/all_blocks';
 import toolbox from './blockly/toolbox';
+import { getElementByXpath } from './helper';
 
+var workspace: any;
 
+function showCode() {
+    Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+    if (workspace == null) {
+        console.warn("Workspace is null");
+        return
+    }
+    var code = Blockly.JavaScript.workspaceToCode(workspace);
+    if (code.includes('SELECT') && !code.includes('Dieser Code enthält ggf. schädliche Schlüsselwörter!')) {
+        if (code.includes(';SELECT')) {
+            code = code.substring(0, code.length - 1)
+            code = code.replace(/;SELECT/g, '<BR>UNION <BR>SELECT');
+            code = code.concat(';');
+        }
+        if (code.includes(';FROM')) {
+            code = code.replace(/;FROM/g, '<BR> FROM');
+            code = code.concat(';');
+        }
+        if (code.includes(';WHERE')) {
+            code = code.replace(/;WHERE/g, '<BR> WHERE');
+            code = code.concat(';');
+        }
+        if (code.includes(';GROUP BY')) {
+            code = code.replace(/;GROUP BY/g, '<BR> GROUP BY');
+            code = code.concat(';');
+        }
+        if (code.includes(';HAVING')) {
+            code = code.replace(/;HAVING/g, '<BR> HAVING');
+            code = code.concat(';');
+        }
+        if (code.includes(';ORDER BY')) {
+            code = code.replace(/;ORDER BY/g, '<BR> ORDER BY');
+            code = code.concat(';');
+        }
+        if (code.includes(';LIMIT')) {
+            code = code.replace(/;LIMIT/g, '<BR> LIMIT');
+            code = code.concat(';');
+        }
+        var cutFirstPart = code.substring(code.search('SELECT'));
+        code = cutFirstPart.substring(0, cutFirstPart.search('\u003B') + 1);
+        code = code.replace(/   /g, ' ');
 
+    }
+    return code;
+}
 
 function initializeBlockies(editorWindow: HTMLElement) {
     console.log("initializeBlockies");
 
     console.log(Blockly)
     // @ts-ignore
-    let workspace = Blockly.inject(editorWindow, { toolbox: toolbox })
+    workspace = Blockly.inject(editorWindow, { toolbox: toolbox })
 
     console.log("Injected blockly");
+
+    workspace.addChangeListener(function (event: any) {
+        var code = showCode();
+        console.log(code);
+        // var codeElement = getElementByXpath("//div[@class='code']");
+        // codeElement.innerHTML = code;
+        // @ts-ignore
+        // document.getElementsByClassName('ace_text-input')[0].value = code;
+        document.getElementsByClassName('ace_text-input')[0].dispatchEvent(new KeyboardEvent('keydown', { 'key': 'a' }));
+        // document.getElementsByClassName('ace_text-input')[0]
+    })
 }
 
 export { initializeBlockies };

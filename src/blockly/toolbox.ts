@@ -5,6 +5,8 @@ export default {
             "kind": "category",
             "name": "Statements & clauses",
             "contents": [
+                { "kind": "block", "type": "lists_select" },
+                { "kind": "block", "type": "lists_from" },
                 {
                     "kind": "block",
                     "type": "select_groupby"
