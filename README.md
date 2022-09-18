@@ -1,4 +1,4 @@
-# Chrome Extension TypeScript Starter
+# Dune Oasis - No Code Dune
 
 ![build](https://github.com/chibat/chrome-extension-typescript-starter/workflows/build/badge.svg)
 
