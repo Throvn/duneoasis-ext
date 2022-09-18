@@ -10,5 +10,5 @@ export default (): string[][] => {
         "ethereum.transactions"
     ];
 
-    return tables.map((table, index) => { return [table, `${index}`] });
+    return tables.map((table, index) => { return [table, table] });
 }

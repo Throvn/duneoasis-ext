@@ -1210,7 +1210,9 @@ Blockly.Blocks['conditionchooser'] = {
         this.setOnChange(function (changeEvent) {
             var parent = this.getSurroundParent();
             var selectedTable = this.getFieldValue('chooseTableC');
+            console.log("Conditionchooser: table: " + selectedTable);
             var correctColumn = this.getFieldValue('chooseColumnC');
+            console.log("Conditionchooser: column: " + correctColumn);
             var doesThoseBothFit = doesMatch(selectedTable, correctColumn);
             if (parent != null && parent.toString().includes('ORDER BY') && (this.getField('orderC') == null)) {
                 this.appendDummyInput('listOrder').appendField(" ").appendField(new Blockly.FieldDropdown([["\u2009", "BLANK"], ["ASC", "ASC"], ["DESC", "DESC"]]), "orderC")
@@ -1248,6 +1250,7 @@ Blockly.JavaScript['conditionchooser'] = function (block) {
         chosenColumnC = '*';
     }
     var code = chosenTableC + '.' + chosenColumnC + ' ' + chosenOrderC;
+    console.info("Conditionchooser: " + code);
     return code;
 };
 
@@ -1820,6 +1823,7 @@ Blockly.Blocks['table'] = {
 };
 Blockly.JavaScript['table'] = function (block) {
     var chosenTableT = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('chooseTableT'));
+    console.log("Table sqlCode: ", code)
     var code = chosenTableT;
     return code;
 };
