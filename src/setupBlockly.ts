@@ -6,7 +6,6 @@
 // @ts-ignore
 import Blockly from './blockly/sql_blocks/all_blocks';
 import toolbox from './blockly/toolbox';
-import { getElementByXpath } from './helper';
 
 var workspace: any;
 
@@ -67,12 +66,8 @@ function initializeBlockies(editorWindow: HTMLElement) {
     workspace.addChangeListener(function (event: any) {
         var code = showCode();
         console.log(code);
-        // var codeElement = getElementByXpath("//div[@class='code']");
-        // codeElement.innerHTML = code;
-        // @ts-ignore
-        // document.getElementsByClassName('ace_text-input')[0].value = code;
-        document.getElementsByClassName('ace_text-input')[0].dispatchEvent(new KeyboardEvent('keydown', { 'key': 'a' }));
-        // document.getElementsByClassName('ace_text-input')[0]
+
+
     })
 }
 
