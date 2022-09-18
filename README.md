@@ -2,32 +2,18 @@
 
 ![build](https://github.com/chibat/chrome-extension-typescript-starter/workflows/build/badge.svg)
 
-Chrome Extension, TypeScript and Visual Studio Code
+Ready to unleash the full power of dune analytics without a single line of code?
+
+We take the complexity of SQL away to enable Researchers, Economists and everyone who is interested in analyzing crypto to make their own charts. Therefore creating an entirely new customer target group which is not yet targeted by dune.
 
 ## Prerequisites
 
 * [node + npm](https://nodejs.org/) (Current Version)
 
-## Option
-
-* [Visual Studio Code](https://code.visualstudio.com/)
-
-## Includes the following
-
-* TypeScript
-* Webpack
-* React
-* Jest
-* Example Code
-    * Chrome Storage
-    * Options Version 2
-    * content script
-    * count up badge number
-    * background
-
+## Log in on `https://dune.com` and 
 ## Project Structure
 
-* src/typescript: TypeScript source files
+* src/blockly: the blockly library, extended to our custom needs to support SQL statements
 * src/assets: static files
 * dist: Chrome Extension directory
 * dist/js: Generated JavaScript files
@@ -37,10 +23,6 @@ Chrome Extension, TypeScript and Visual Studio Code
 ```
 npm install
 ```
-
-## Import as Visual Studio Code project
-
-...
 
 ## Build
 
@@ -66,5 +48,6 @@ type `Ctrl + Shift + B`
 
 Load `dist` directory
 
-## Test
-`npx jest` or `npm run test`
+## Known issues.
+
+Since the Dune API is so limited that we couldn't use it. We had to come up with a hack. Chrome extensions can bypass all kinds of website security. Thats why we ended up injecting our code into the website `https://dune.com/queries`. Unfortunately it is really messy to implement basic interaction with the gui, and because of different browser specifications it could be the case that the sql statement goes not get run by dune. However, if you open up the console you can still see the genereated SQL statement from the code blocks.
