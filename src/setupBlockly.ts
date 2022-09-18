@@ -67,7 +67,21 @@ function initializeBlockies(editorWindow: HTMLElement) {
         var code = showCode();
         console.log(code);
 
+        var $inpt = document.createElement("input")
+        $inpt.setAttribute("type", "hidden")
+        $inpt.setAttribute("id", "sqlCode")
+        $inpt.setAttribute("value", code)
 
+        document.body.insertAdjacentElement("beforeend", $inpt)
+        // Inject script to replace editor with right value.
+        var s = document.createElement('script');
+        s.src = chrome.runtime.getURL('js/submitQuery.js');
+        s.onload = function () {
+            // @ts-ignore
+            this.remove();
+            document.getElementById("sqlCode")?.remove();
+        };
+        (document.head || document.documentElement).appendChild(s);
     })
 }
 

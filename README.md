@@ -6,6 +6,8 @@ Ready to unleash the full power of dune analytics without a single line of code?
 
 We take the complexity of SQL away to enable Researchers, Economists and everyone who is interested in analyzing crypto to make their own charts. Therefore creating an entirely new customer target group which is not yet targeted by dune.
 
+**Note:** Currently the set of blocks is limited, but in the future this idea could be expanded to move further away from the SQL syntax and more to an easier to understand language. (e.g. a blocks for CTEs, and higher level abstractions)
+
 ## Prerequisites
 
 * [node + npm](https://nodejs.org/) (Current Version)
